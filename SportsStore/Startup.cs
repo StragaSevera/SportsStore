@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using SportsStore.Models;
 
 namespace SportsStore
 {
@@ -10,6 +11,8 @@ namespace SportsStore
         {
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddMvc();
+
+            services.AddTransient<IProductRepository, FakeProductRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -21,7 +24,10 @@ namespace SportsStore
 
             app.UseStatusCodePages();
             app.UseStaticFiles();
-            app.UseMvc(routes => { });
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("default", "{controller=Product}/{action=List}/{id?}");
+            });
         }
     }
 }
