@@ -10,14 +10,16 @@ using Microsoft.Extensions.Logging;
 
 namespace SportsStore
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            CreateWebHostBuilder(args)
+                .UseDefaultServiceProvider(options => options.ValidateScopes = false)
+                .Build().Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        private static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }
