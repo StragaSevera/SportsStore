@@ -1,0 +1,27 @@
+{
+  "name": "sports-store",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "webpack --mode development --progress",
+    "prod": "rimraf ../wwwroot/dist && webpack --mode production --progress"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0"
+  },
+  "devDependencies": {
+    "aspnet-webpack": "^3.0.0",
+    "css-loader": "^3.0.0",
+    "rimraf": "^2.6.3",
+    "mini-css-extract-plugin": "^0.7.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-middleware": "^3.7.0",
+    "webpack-hot-middleware": "^2.25.0"
+  }
+}
