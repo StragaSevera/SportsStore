@@ -9,10 +9,16 @@
         <Folder Include="wwwroot\dist\" />
     </ItemGroup>
 
+    <PropertyGroup>
+        <DefaultItemExcludes>
+            $(DefaultItemExcludes);$(ClientAppFolder)\node_modules\**
+        </DefaultItemExcludes>
+    </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.All" />
     </ItemGroup>
-
+    
     <Target Name="EnsureNodeModules" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(ClientAppFolder)\node_modules') ">
         <Message Importance="high" Text="Restoring dependencies using 'yarn'. This may take several minutes..." />
         <Exec WorkingDirectory="$(ClientAppFolder)" Command="yarn install" />
