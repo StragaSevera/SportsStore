@@ -6,26 +6,25 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="wwwroot\dist\"/>
+        <Folder Include="wwwroot\dist\" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.All"/>
+        <PackageReference Include="Microsoft.AspNetCore.All" />
     </ItemGroup>
 
     <Target Name="EnsureNodeModules" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(ClientAppFolder)\node_modules') ">
-        <Message Importance="high"
-                 Text="Restoring dependencies using 'yarn'. This may take several minutes..."/>
-        <Exec WorkingDirectory="$(ClientAppFolder)" Command="yarn install"/>
+        <Message Importance="high" Text="Restoring dependencies using 'yarn'. This may take several minutes..." />
+        <Exec WorkingDirectory="$(ClientAppFolder)" Command="yarn install" />
     </Target>
 
     <Target Name="BuildClientAssets" AfterTargets="ComputeFilesToPublish">
-        <Exec WorkingDirectory="$(ClientAppFolder)" Command="yarn install"/>
-        <Exec WorkingDirectory="$(ClientAppFolder)" Command="yarn run prod"/>
+        <Exec WorkingDirectory="$(ClientAppFolder)" Command="yarn install" />
+        <Exec WorkingDirectory="$(ClientAppFolder)" Command="yarn run prod" />
 
         <!-- Include the newly-built files in the publish output -->
         <ItemGroup>
-            <DistFiles Include="$(ClientAppFolder)\wwwroot\dist\**"/>
+            <DistFiles Include="$(ClientAppFolder)\wwwroot\dist\**" />
             <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
                 <RelativePath>%(DistFiles.Identity)</RelativePath>
                 <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
