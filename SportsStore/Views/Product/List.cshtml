@@ -2,7 +2,7 @@
 
 @foreach (Product p in Model.Products)
 {
-    @Html.Partial("Product", p)
+    <partial name="Product" model="@p"/>
 }
 <div page-model="@Model.PagingInfo" page-action="List"
      class="btn-group m-1"
